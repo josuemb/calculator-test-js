@@ -4,3 +4,6 @@ node_modules
 # Ignore packages files
 *.tgz
 *.zip
+
+# Ignore apk files
+*.apk
