@@ -1,0 +1,9 @@
+# Ignore apk directory
+apk
+
+# Ignore aws-device-farm-config directory
+aws-device-farm-config
+
+# Ignore packages files
+*.tgz
+*.zip
