@@ -108,4 +108,10 @@ For the cloud testing environment, we just need to few steps into [AWS Device Fa
     10. On the **Configure** page, under **Setup test framework**, choose the **Apium Node.js** option, then click in **Chose file** button and choose the file we have created into the step 2.
     11. Choose to either **Run your test in our standard environment** or **Run your test in a custom environment**. The standard environment has granular, per-test reporting, while the custom environment is capable of running custom test harnesses built on top of any framework. <br>
     Using the custom environment allows for full control over test setup, teardown, and invocation, as well as choosing specific versions of runtimes and the Appium server.
-    12. Choose Next, and then follow the instructions to select devices and start the run. For more information, see [Create a test run in Device Farm](https://docs.aws.amazon.com/devicefarm/latest/developerguide/how-to-create-test-run.html).
+    12. Choose Next, and then on the **Create a TestSpec** button.
+    13. On the **Edit your YAML** screen replace contents with the provided file: [aws-device-farm-config/awsdevicefarm_spec_file.yml](/aws-device-farm-config/awsdevicefarm_spec_file.yml), so the suggestion is to copy/paste the contents and then into the **Save as** input text provide a name, the suggestion is to name it as *awsdevicefarm_spec_file* (extension is given automatically). After that, click on the **Save as New** button.
+    14. Click on the **Next** button.
+    15. On the **Select mobile devices to test** screen select the prefilled **Top Devices** pool or click on the **Create device pool** in case you want to create a custom pool.
+    16. In case you have choose the **Create device pool** option, you can follow the instructions on: https://docs.aws.amazon.com/devicefarm/latest/developerguide/how-to-create-device-pool.html#how-to-create-device-pool-console. To create a custom device pool. Don't forget to select just Android devices.
+    17. Being on the **Install additional software** screen leave defaults options and click on the **Next** button.
+    18. Finally, being on the **Review and start run** screen, click on the **Confirm and start run** button.
