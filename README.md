@@ -53,7 +53,7 @@ It supports different [test types and frameworks](https://docs.aws.amazon.com/de
 Next subsections describe how to enable each testing environment: local environment and Cloud environment.
 ### Local testing environment
 For the local testing environment, we need to set many things up. Next, we are describing each component:
-1. [Node.js](https://nodejs.org/): To see how to install it depending on you OS see: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs.<br>
+1. [Node.js](https://nodejs.org/):<br> To see how to install it depending on you OS see: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs.<br>
 Since the last version capable to run into AWS Device effortless is 16.x (last available release), then the recommendation is to use same version in the local environment.<br>
 Once you finished the installation, you can check the installation was successful by executing the command:<br>
 <code>node --version</code><br>
@@ -62,19 +62,19 @@ See more about npm in: https://docs.npmjs.com/about-npm.
 To check it npm is installed running well, please execute the command:<br>
 <code>npm --version</code>
 
-2. [Appium](http://appium.io/): We will install Appium using npm. Since [Appium supports just 1.X version](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html#w12aac26b9c37) we will install last available version with the next command:<br>
+2. [Appium](http://appium.io/):<br> We will install Appium using npm. Since [Appium supports just 1.X version](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html#w12aac26b9c37) we will install last available version with the next command:<br>
 <code>npm install -g appium@">= 1.0.0 <2.0.0"</code><br>
 Once [Appium](http://appium.io/) is installed, you can check the installation was successful by executing the command:<br>
 <code>appium --version</code>
 
-3. [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver): Even when for the version 1.X [UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) is installed together with [Appium](http://appium.io/), there are some prerequisites and configurations we need to do. Those are:
+3. [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver):<br> Even when for the version 1.X [UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) is installed together with [Appium](http://appium.io/), there are some prerequisites and configurations we need to do. Those are:
     1. Install a compatible JDK with a recent version, version 21 is recommended. The recommended OpenJDK to be installed is [Amazon Corretto](https://aws.amazon.com/corretto/), the Amazon from JDK. See how to install it an more information at: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/what-is-corretto-21.html.<br>
     you can check the installation was successful by executing the command:<br>
     <code>javac --version</code><br>
     If it didn't work, you can check if the installation is included into the *PATH* environment variable. The Amazon Correto User Guide includes instructions about configuring PATH environment variable according to the Operative System. Example: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/windows-10-install.html
     2. Configure *JAVA_HOME* environment variable. The Amazon Correto User Guide includes instructions about configuring PATH environment variable according to the Operative System. Example: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/windows-10-install.html.
 
-4. [Android Emulator](https://developer.android.com/studio/run/emulator): If you want to use an emulated device, we can do it in several way but the easier and the recommended one is to install it by using [Android Studio](https://developer.android.com/studio). To install and configure the emulator and developer tools, those are the required steps:
+4. [Android Emulator](https://developer.android.com/studio/run/emulator):<br> If you want to use an emulated device, we can do it in several way but the easier and the recommended one is to install it by using [Android Studio](https://developer.android.com/studio). To install and configure the emulator and developer tools, those are the required steps:
     1. Install Android Studio: To see how to install it, look at this: https://developer.android.com/studio/install.<br>
     2. Create a new virtual device. To create a new virtual device, see this guide: https://developer.android.com/studio/run/managing-avds.
     3. Create *ANDROID_HOME* environment variable. See more information at: https://developer.android.com/tools/variables.
@@ -82,7 +82,7 @@ Once [Appium](http://appium.io/) is installed, you can check the installation wa
     5. Before executing the tests in the emulator, it is necessary to check if emulated device is reachable by running the command:<br>
     <code>adb devices</code><br>
     The command must return a list of the devices, emulated in this case.
-5. Physical Android Device. To execute tests against a hardware device, check at this guide: https://developer.android.com/studio/run/device.<br>
+5. **Physical Android Device**:<br> To execute tests against a hardware device, check at this guide: https://developer.android.com/studio/run/device.<br>
 Before executing the tests in the physical device it is necessary to check if emulated device is reachable by running the command:<br>
 <code>adb devices</code><br>
 The command must return a list of the devices, connected hardware in this case.
@@ -115,3 +115,76 @@ For the cloud testing environment, we just need to few steps into [AWS Device Fa
     16. In case you have choose the **Create device pool** option, you can follow the instructions on: https://docs.aws.amazon.com/devicefarm/latest/developerguide/how-to-create-device-pool.html#how-to-create-device-pool-console. To create a custom device pool. Don't forget to select just Android devices.
     17. Being on the **Install additional software** screen leave defaults options and click on the **Next** button.
     18. Finally, being on the **Review and start run** screen, click on the **Confirm and start run** button.
+
+## Testing
+
+### Local testing
+To execute local testing, it is necessary to execute the next steps:
+1. Execute all the steps indicated in the section called **Cloud testing environment**.
+2. Open a command line and change the directory to the local folder when you downloaded the source code of this project. Example:<br>
+<code>cd /home/username/calculator-test-js</code>
+3. Install all dependencies by executing next command in the command line:<br>
+<code>npm install</code>
+4. In case you want to test with emulator then you need to execute next steps:
+    1. Execute all the steps indicated in the section **Local testing environment**, subsection **Emulator**. Once you created and Andriod Virtual Device (aka avd), take note on the avd name. We will use this name to start emulating this device.
+    2. Start emulating the device with the next command:<br>
+    <code>emulator -avd avd_name</code><br>
+    Where *avd_name* is the name of the Android Virtual Device mentioned in the previous step.
+5. In case you want to test using a real Android device, you need to execute all the steps indicated in the section **Local testing environment**, subsection **Physical Android Device**.
+6. Execute [Appium](http://appium.io/) in the command line by executing the next command in the command line:<br>
+<code>appium</code><br>
+In case everything goes will you will see next message into the command line:<br>
+<code>
+[Appium] Welcome to Appium v1.22.3<br>
+[Appium] Appium REST http interface listener started on 0.0.0.0:4723
+</code><br>
+Where v.1.22.3 is the last available [Appium](http://appium.io/) version and it could change depending on the specific version you have installed.<br>
+**IMPORTANT:** If the version is >= 2.0.0 then, the tests will not run and you need to uninstall this version and install last available 1.X available version.
+7. Follow instructions indicated in the file [/apk/README.md](/apk/README.md) and name the apk file as *application.apk* into the *apk* folder of the root folder of this solution.
+8. Execute all tests by executing the next command in the command line:<br>
+<code>npm run wdio-local</code><br>
+If everything goes well you will see the tests being executed in the emulator or real Android device and after finishing you will see the final spec report, something like:<br>
+<code>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0] Running: /home/username/calculator-test-js/apk/application.apk on Android<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0] Session ID: 954a579b-e3dd-4c75-892a-cfa178d28b5e<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0] » /test/specs/test.e2e.js<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0] Test some calculations<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]     When we are suming<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should sum 1+2<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should sum 3+5<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]     When we are substracting<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should substract 6-3<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should substract 9-2
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]     When we are multipliying<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should multiply 3*4<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should multiply 7*6<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]     When we are dividing<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should divide 8/2<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]        ✓ should divide 9/3<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0]<br>
+[/home/username/calculator-test-js/apk/application.apk Android #0-0] 8 passing (28.2s)<br>
+</code>
+
+### Cloud testing
+
+#### Prerequisites
+To create test zip file, it is necessary to install the software according to the Operative System:
+- For Linux or MacOS, you must install *zip* command. Instructions are specific for each OS/Linux Distribution.
+- For Windows you must install 7zip. See more on: https://7-zip.org/download.html.
+
+#### Create zip test file
+To create the zip test file, it is necessary to execute next steps:
+1. Open a command line and go to the root folder of this project. Example:<br>
+<code>cd /home/username/calculator-test-js</code>
+2. Execute the command to create the zip file:<br>
+<code>npm run create-zip</code><br>
+If everything goes well, you will see the just created zip file: **calculator-test-0.0.1.zip**<br>
+Where 0.0.1 is the **version** field into the **package.json** file.
+
+#### Execute test file
+1. To execute cloud tests for the first time, it is necessary to execute all the steps described in the section called **Cloud testing environment** above.
+2. In case you have an existing testing environment, then you must create a new run by executing the process described  here: https://docs.aws.amazon.com/devicefarm/latest/developerguide/how-to-create-test-run.html
