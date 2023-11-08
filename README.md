@@ -1,5 +1,5 @@
 # calculator-test-js
-Example application to made [end-to-end (E2E) testing](https://developer.android.com/training/testing/fundamentals#scope) for an Android Application using [Appium](http://appium.io/), [Wedriver.IO](https://webdriver.io/) and [mochaJS](https://mochajs.org/) locally using either an emulator or actual Android phones or in [AWS DeviceFarm](https://aws.amazon.com/device-farm/) as a cloud testing service that uses real devices.
+Example application to made [end-to-end (E2E) testing](https://developer.android.com/training/testing/fundamentals#scope) for an Android Application using [Appium](http://appium.io/), [Webdriver.IO](https://webdriver.io/) and [mochaJS](https://mochajs.org/) locally using either an emulator or actual Android phones or in [AWS DeviceFarm](https://aws.amazon.com/device-farm/) as a cloud testing service that uses real devices.
 
 ## Introduction
 This application shows how can we create an [end-to-end (E2E) testing](https://developer.android.com/training/testing/fundamentals#scope) over an Android Application, in this case, we will test a calculator application. We will use just the [apk file](<https://en.wikipedia.org/wiki/Apk_(file_format)>). Since we don't have the source code, demonstrating than it is not necessary to own the code for this kind of tests.<br>
