@@ -5,5 +5,11 @@ node_modules
 *.tgz
 *.zip
 
+# Ignore log files
+*.log
+
+# Ignore lock files
+*lock.json
+
 # Ignore apk files
 /**/*.apk
