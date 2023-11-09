@@ -1,18 +1,10 @@
 {
-  "name": "calculator-test",
+  "name": "calculator-test-js",
   "description": "Example for testing and Android Application using Appium, wdio and mochaJS.",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "prewdio-local": "npm install",
-    "wdio-local": "wdio run ./wdio.local.conf.js",
-    "prewdio-device-farm": "npm install",
-    "wdio-device-farm": "wdio run ./wdio.devicefarm.conf.js",
-    "precreate-zip": "npm pack",
-    "create-zip": "zip $npm_package_name-$npm_package_version.zip $npm_package_name-$npm_package_version.tgz || 7z a %npm_package_name%-%npm_package_version%.zip %npm_package_name%-%npm_package_version%.tgz"
-  },
   "author": "josuemb@gmail.com",
   "license": "MIT",
+  "type": "module",
+  "version": "0.0.1",
   "dependencies": {
     "mocha": "^10.2.0",
     "webdriverio": "^8.21.0"
@@ -23,5 +15,13 @@
     "@wdio/local-runner": "^8.21.0",
     "@wdio/mocha-framework": "^8.21.0",
     "@wdio/spec-reporter": "^8.21.0"
+  },
+  "scripts": {
+    "prewdio-local": "npm install",
+    "wdio-local": "wdio run ./wdio.local.conf.js",
+    "prewdio-device-farm": "npm install",
+    "wdio-device-farm": "wdio run ./wdio.devicefarm.conf.js",
+    "precreate-zip": "npm pack",
+    "create-zip": "zip $npm_package_name-$npm_package_version.zip $npm_package_name-$npm_package_version.tgz || 7z a %npm_package_name%-%npm_package_version%.zip %npm_package_name%-%npm_package_version%.tgz"
   }
 }
