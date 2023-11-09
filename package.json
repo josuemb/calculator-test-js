@@ -5,9 +5,9 @@
   "version": "0.0.1",
   "scripts": {
     "prewdio-local": "npm install",
-    "wdio-local": "wdio run ./test/config/wdio.local.conf.js",
+    "wdio-local": "wdio run ./wdio.local.conf.js",
     "prewdio-device-farm": "npm install",
-    "wdio-device-farm": "wdio run ./test/config/wdio.devicefarm.conf.js",
+    "wdio-device-farm": "wdio run ./wdio.devicefarm.conf.js",
     "precreate-zip": "npm pack",
     "create-zip": "zip $npm_package_name-$npm_package_version.zip $npm_package_name-$npm_package_version.tgz || 7z a %npm_package_name%-%npm_package_version%.zip %npm_package_name%-%npm_package_version%.tgz"
   },

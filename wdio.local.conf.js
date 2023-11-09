@@ -29,7 +29,7 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        '../specs/**/*.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -59,7 +59,8 @@ export const config = {
     //
     capabilities: [{
         'platformName': 'Android',
-        'automationName': 'UiAutomator2'
+        'automationName': 'UiAutomator2',
+        'app': appBinaryPath,
     }],
 
     //
@@ -133,10 +134,7 @@ export const config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: [
-        'spec',
-        ['junit', {
-            outputDir: process.env.DEVICEFARM_LOG_DIR + '/reports'
-        }]
+        'spec'
     ],
 
     // Options to be passed to Mocha.
