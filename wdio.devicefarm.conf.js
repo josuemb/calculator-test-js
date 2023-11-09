@@ -1,7 +1,9 @@
 import * as path from 'path';
 
-const appBinaryPath = path.resolve('./apk/application.apk');
-
+/**
+ * Webdriver.IO configuration file for Cloud tests execution in AWS Device Farm.
+ * See: https://webdriver.io/docs/configurationfile/
+ */
 export const config = {
     //
     // ====================

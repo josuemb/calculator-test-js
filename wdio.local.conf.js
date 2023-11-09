@@ -2,6 +2,10 @@ import * as path from 'path';
 
 const appBinaryPath = path.resolve('./apk/application.apk');
 
+/**
+ * Webdriver.IO configuration file for local tests execution.
+ * See: https://webdriver.io/docs/configurationfile/
+ */
 export const config = {
     //
     // ====================
