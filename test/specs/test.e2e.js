@@ -1,3 +1,6 @@
+// @ts-check
+
+import { expect } from '@wdio/globals'
 import CalculatorPage from '../pageobjects/calculator.page.js'
 
 describe('Test some calculations', () => {

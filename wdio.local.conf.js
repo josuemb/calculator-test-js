@@ -1,3 +1,5 @@
+// @ts-check
+
 import * as path from 'path';
 
 const appBinaryPath = path.resolve('./apk/application.apk');

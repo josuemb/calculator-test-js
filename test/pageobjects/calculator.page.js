@@ -1,3 +1,5 @@
+// @ts-check
+
 import Page from './page.js';
 
 const RESULT_DISPLAY_ID = 'id=com.google.android.calculator:id/result_preview';
