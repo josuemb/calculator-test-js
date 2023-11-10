@@ -30,8 +30,10 @@ As an alternative, we can also use [Typescript](https://www.typescriptlang.org/)
 
 4. [Appium](http://appium.io/): It is the center of the solutions. According to its web page it "is an open-source project and ecosystem of related software, designed to facilitate UI automation of many app platforms, including mobile (iOS, Android, Tizen), browser (Chrome, Firefox, Safari), desktop (macOS, Windows), TV (Roku, tvOS, Android TV, Samsung), and more". See more on: http://appium.io/.<br>
 This component of the solution will be responsible to be an intermediary between the testing software and the Android Device. It implements the [WebDriver specification](https://w3c.github.io/webdriver/webdriver-spec.html) and is capable to listen using an HTTP endpoint to make its job.<br>
-It stay listening for instructions and when something arrives it uses the corresponding Driver, [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) in this case to execute some instruction against the device, [Android](https://www.android.com/what-is-android/) in this case. See next point for more details about the Driver interaction.
-For this solution, we will make if of the last 1.X [Appium](http://appium.io/) available version. Since [AWS DeviceFarm](https://aws.amazon.com/device-farm/) currently supports only those versions. See: [AWS Device Farm > Developer Guide > Appium > Version support](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html#w12aac26b9c37).
+It stay listening for instructions and when something arrives it uses the corresponding Driver, [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) in this case to execute some instruction against the device, [Android](https://www.android.com/what-is-android/) in this case. See next point for more details about the Driver interaction.<br>
+For this solution, we will use [Appium](http://appium.io/) ver 2.x with **Custom test environment**.
+Read more about both test environments at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html
+See more about **Custom test environment** for Android at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/custom-test-environments.html
 
 5. [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) it is part of the [Appium](http://appium.io/) ecosystem. It is responsible to drive all interactions with Android Device. It internally uses [UI framework](https://developer.android.com/training/testing/ui-automator) as well as [Appium ADB](https://github.com/appium/appium-adb) to communicate with the device. It stays "listening" for instructions from Appium Server and when something arrives it sends instructions to the device to do something, like, installing, opening or interacting with an application or any other part of the device.
 
@@ -47,8 +49,10 @@ It is capable to execute manual or automated testing. For this solution we will 
 We can use private or shared devices. Is up to you what to use according to your particular need. See more at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/working-with-private-devices.html.<br>
 It supports different [test types and frameworks](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types.html), however for this solution we will use Appium tests with [Node.js](https://nodejs.org/).<br>
 **Important:**
-    - Since [AWS Device Farm](https://aws.amazon.com/device-farm/) currently just supports Appium 1.x, this is the version we will use during this testing solution. See more at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html.<br>
-    - [AWS Device Farm](https://aws.amazon.com/device-farm/) is capable to use different [Node.js](https://nodejs.org/) versions, however the most recent we can use with no additional effort is version 16.x (last available release), then, we will use this one.
+Since [AWS Device Farm](https://aws.amazon.com/device-farm/) **Custom test environment** give us more flexibility, we will use it as the desired test environment. See the supported software for this environment at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html.<br>
+For this example we will with the next software configuration:
+    - [Node.js](https://nodejs.org/) version 18.x<br>
+    - [Appium](http://appium.io/) version 2.X.<br>
 
 ## Environment
 Next subsections describe how to enable each testing environment: local environment and Cloud environment.
@@ -63,17 +67,25 @@ See more about npm in: https://docs.npmjs.com/about-npm.
 To check it npm is installed running well, please execute the command:<br>
 <code>npm --version</code>
 
-2. [Appium](http://appium.io/):<br> We will install Appium using npm. Since [Appium supports just 1.X version](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html#w12aac26b9c37) we will install last available version with the next command:<br>
+2. [Appium](http://appium.io/):<br> We will install Appium using npm.<br>
+For this example, we will use [Standard test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#test-environments-standard) since it give us more flexibility.<br>
+It supports node.js 16.x and Appium ver 1.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
+Install local version by executing:<br>
 <code>npm install -g appium@">= 1.0.0 <2.0.0"</code><br>
 Once [Appium](http://appium.io/) is installed, you can check the installation was successful by executing the command:<br>
 <code>appium --version</code>
 
-3. [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver):<br> Even when for the version 1.X [UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) is installed together with [Appium](http://appium.io/), there are some prerequisites and configurations we need to do. Those are:
+3. [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver):<br>
+The necessary steps to install Appium's UIAutomator Driver:
     1. Install a compatible JDK with a recent version, version 21 is recommended. The recommended OpenJDK to be installed is [Amazon Corretto](https://aws.amazon.com/corretto/), the Amazon from JDK. See how to install it an more information at: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/what-is-corretto-21.html.<br>
     you can check the installation was successful by executing the command:<br>
     <code>javac --version</code><br>
     If it didn't work, you can check if the installation is included into the *PATH* environment variable. The Amazon Correto User Guide includes instructions about configuring PATH environment variable according to the Operative System. Example: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/windows-10-install.html
     2. Configure *JAVA_HOME* environment variable. The Amazon Correto User Guide includes instructions about configuring PATH environment variable according to the Operative System. Example: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/windows-10-install.html.
+    3. Since we are using Appium v 2.x, it is necessary installing [Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver) by executing the next command:<br>
+    <code>appium driver install uiautomator2</code><br>
+    You can check the installation was successful by executing the command:<br>
+    <code>appium driver list</code><br>
 
 4. [Android Emulator](https://developer.android.com/studio/run/emulator):<br> If you want to use an emulated device, we can do it in several way but the easier and the recommended one is to install it by using [Android Studio](https://developer.android.com/studio). To install and configure the emulator and developer tools, those are the required steps:
     1. Install Android Studio: To see how to install it, look at this: https://developer.android.com/studio/install.<br>
@@ -83,6 +95,7 @@ Once [Appium](http://appium.io/) is installed, you can check the installation wa
     5. Before executing the tests in the emulator, it is necessary to check if emulated device is reachable by running the command:<br>
     <code>adb devices</code><br>
     The command must return a list of the devices, emulated in this case.
+
 5. **Physical Android Device**:<br> To execute tests against a hardware device, check at this guide: https://developer.android.com/studio/run/device.<br>
 Before executing the tests in the physical device it is necessary to check if emulated device is reachable by running the command:<br>
 <code>adb devices</code><br>
@@ -101,16 +114,20 @@ For the cloud testing environment, we just need to few steps into [AWS Device Fa
     3. Sign into the [AWS Device Farm](https://aws.amazon.com/device-farm/) console at: https://console.aws.amazon.com/devicefarm.
     4. In the navigation pane, choose **Mobile Device Testing**, and then choose **Projects**.
     5. Under **Mobile Device Testing Projects**, choose **New project**.
-    6. Under **Create project**, enter a **Project Name** (you can chose a relevant name for you case).
+    6. Under **Create project**, enter a **Project Name** (you can choose a relevant name for you case).
     7. On the **Automated tests** page, choose **Create a new run**.
     8. On the **Choose application** page, under **Mobile App**, choose **Choose File**, and then choose an Android (.apk) file from your computer. Or, drag the file from your computer and drop it in the console.<br>
     To get the example APK file see: [APK README file](/apk/README.md).
     9. Enter a **Run name**, anything relevant for your case. By default, the Device Farm console uses the file name you have choose in the previous step.
-    10. On the **Configure** page, under **Setup test framework**, choose the **Apium Node.js** option, then click in **Chose file** button and choose the file we have created into the step 2.
+    10. On the **Configure** page, under **Setup test framework**, choose the **Apium Node.js** option, then click in **Choose file** button and choose the file we have created into the step 2.
     11. Choose to either **Run your test in our standard environment** or **Run your test in a custom environment**. The standard environment has granular, per-test reporting, while the custom environment is capable of running custom test harnesses built on top of any framework. <br>
     Using the custom environment allows for full control over test setup, teardown, and invocation, as well as choosing specific versions of runtimes and the Appium server.
     12. Choose Next, and then on the **Create a TestSpec** button.
-    13. On the **Edit your YAML** screen replace contents with the provided file: [aws-device-farm-config/awsdevicefarm_spec_file.yml](/aws-device-farm-config/awsdevicefarm_spec_file.yml), so the suggestion is to copy/paste the contents and then into the **Save as** input text provide a name, the suggestion is to name it as *awsdevicefarm_spec_file* (extension is given automatically). After that, click on the **Save as New** button.
+    13. On the **Edit your YAML** screen replace contents with the provided file, depending on the desired test environment: **Standard** or **Custom**. See details on the **Appium** component of the **Local test environment** section. For each test environment you must use different  configuration:
+        1. [Standard test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#test-environments-standard):<br>
+        Use [aws-device-farm-config/awsdevicefarm_standard_spec_file.yml](/aws-device-farm-config/awsdevicefarm_standard_spec_file.yml), so the suggestion is to copy/paste the contents and then into the **Save as** input text provide a name, the suggestion is to name it as *awsdevicefarm_standard_spec_file* (extension is given automatically). After that, click on the **Save as New** button.
+        2. [Custom test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#custom-test-environment):<br>
+        Use [aws-device-farm-config/awsdevicefarm_custom_spec_file.yml](/aws-device-farm-config/awsdevicefarm_custom_spec_file.yml), so the suggestion is to copy/paste the contents and then into the **Save as** input text provide a name, the suggestion is to name it as *awsdevicefarm_standard_spec_file* (extension is given automatically). After that, click on the **Save as New** button.
     14. Click on the **Next** button.
     15. On the **Select mobile devices to test** screen select the prefilled **Top Devices** pool or click on the **Create device pool** in case you want to create a custom pool.
     16. In case you have choose the **Create device pool** option, you can follow the instructions on: https://docs.aws.amazon.com/devicefarm/latest/developerguide/how-to-create-device-pool.html#how-to-create-device-pool-console. To create a custom device pool. Don't forget to select just Android devices.
@@ -127,7 +144,7 @@ To execute local testing, it is necessary to execute the next steps:
 3. Install all dependencies by executing next command in the command line:<br>
 <code>npm install</code>
 4. In case you want to test with emulator then you need to execute next steps:
-    1. Execute all the steps indicated in the section **Local testing environment**, subsection **Emulator**. Once you created and Andriod Virtual Device (aka avd), take note on the avd name. We will use this name to start emulating this device.
+    1. Execute all the steps indicated in the section **Local testing environment**, subsection **Emulator**. Once you created and Android Virtual Device (aka avd), take note on the avd name. We will use this name to start emulating this device.
     2. Start emulating the device with the next command:<br>
     <code>emulator -avd avd_name</code><br>
     Where *avd_name* is the name of the Android Virtual Device mentioned in the previous step.

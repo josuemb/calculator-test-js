@@ -17,7 +17,7 @@ export const config = {
     runner: 'local',
     baseUrl: 'http://localhost',
     port: 4723,
-    path: '/wd/hub',
+    //path: '/wd/hub',  // Use this configuration for Appium v 1.x
     //
     // ==================
     // Specify Test Files
@@ -65,8 +65,10 @@ export const config = {
     //
     capabilities: [{
         'platformName': 'Android',
-        'automationName': 'UiAutomator2',
-        'app': appBinaryPath,
+        //'automationName': 'UiAutomator2',              // Use this configuration for Appium v 1.x
+        //'app': appBinaryPath,                          // Use this configuration for Appium v 1.x
+        'appium:automationName': 'UiAutomator2',         // Use this configuration for Appium v 2.x
+        'appium:app': appBinaryPath,                     // Use this configuration for Appium v 2.x
     }],
 
     //
