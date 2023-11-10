@@ -20,7 +20,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('1');
             await CalculatorPage.pressButton('+');
             await CalculatorPage.pressButton('2');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('3');
         })
 
@@ -30,7 +30,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('3');
             await CalculatorPage.pressButton('+');
             await CalculatorPage.pressButton('5');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('8');
         })
     });
@@ -42,7 +42,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('6');
             await CalculatorPage.pressButton('-');
             await CalculatorPage.pressButton('3');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('3');
         })
 
@@ -52,7 +52,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('9');
             await CalculatorPage.pressButton('-');
             await CalculatorPage.pressButton('2');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('7');
         })
     });
@@ -64,7 +64,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('3');
             await CalculatorPage.pressButton('*');
             await CalculatorPage.pressButton('4');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('12');
         })
 
@@ -74,7 +74,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('7');
             await CalculatorPage.pressButton('*');
             await CalculatorPage.pressButton('6');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('42');
         })
     });
@@ -86,7 +86,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('8');
             await CalculatorPage.pressButton('/');
             await CalculatorPage.pressButton('2');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('4');
         })
 
@@ -96,7 +96,7 @@ describe('Test some calculations', () => {
             await CalculatorPage.pressButton('9');
             await CalculatorPage.pressButton('/');
             await CalculatorPage.pressButton('3');
-            result = await CalculatorPage.result();
+            result = await CalculatorPage.resultPreview();
             await expect(result).toBe('3');
         })
     });

@@ -61,7 +61,8 @@ export const config = {
     //
     capabilities: [{
         'platformName': 'Android',
-        'automationName': 'UiAutomator2'
+        //'automationName': 'UiAutomator2',              // Use this configuration for Appium v 1.x
+        'appium:automationName': 'UiAutomator2',         // Use this configuration for Appium v 2.x
     }],
 
     //
