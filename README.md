@@ -71,7 +71,7 @@ To check it npm is installed running well, please execute the command:<br>
 For this example, we will use [Standard test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#test-environments-standard) since it give us more flexibility.<br>
 It supports node.js 16.x and Appium ver 1.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
 Install local version by executing:<br>
-<code>npm install -g appium@">= 1.0.0 <2.0.0"</code><br>
+<code>npm install -g appium@">= 2.0.0 <3.0.0"</code><br>
 Once [Appium](http://appium.io/) is installed, you can check the installation was successful by executing the command:<br>
 <code>appium --version</code>
 
@@ -149,10 +149,20 @@ To execute local testing, it is necessary to execute the next steps:
 <code>appium</code><br>
 In case everything goes will you will see next message into the command line:<br>
 <code>
-[Appium] Welcome to Appium v1.22.3<br>
-[Appium] Appium REST http interface listener started on 0.0.0.0:4723
+[Appium] Welcome to Appium v2.2.2
+[Appium] Attempting to load driver uiautomator2...
+[Appium] Requiring driver at C:\Users\josuemb\.appium\node_modules\appium-uiautomator2-driver
+[Appium] Appium REST http interface listener started on http://0.0.0.0:4723
+[Appium] You can provide the following URLs in your client code to connect to this server:
+[Appium]        http://11.128.47.153:4723/
+[Appium]        http://192.168.100.6:4723/
+[Appium]        http://127.0.0.1:4723/ (only accessible from the same host)
+[Appium]        http://172.29.96.1:4723/
+[Appium] Available drivers:
+[Appium]   - uiautomator2@2.34.1 (automationName 'UiAutomator2')
+[Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.
 </code><br>
-Where v.1.22.3 is the last available [Appium](http://appium.io/) version and it could change depending on the specific version you have installed.<br>
+Where v2.2.2 is the last available [Appium](http://appium.io/) version and it could change depending on the specific version you have installed.<br>
 **IMPORTANT:** If the version is >= 2.0.0 then, the tests will not run and you need to uninstall this version and install last available 1.X available version.
 7. Follow instructions indicated in the file [/apk/README.md](/apk/README.md) and name the apk file as *application.apk* into the *apk* folder of the root folder of this solution.
 8. Execute all tests by executing the next command in the command line:<br>
