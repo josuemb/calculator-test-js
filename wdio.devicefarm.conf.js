@@ -13,7 +13,8 @@ export const config = {
     runner: 'local',
     baseUrl: 'http://localhost',
     port: 4723,
-    path: '/wd/hub',
+    // Uncomment this path content just if you are using Appium version 1.x
+    //path: '/wd/hub',
     //
     // ==================
     // Specify Test Files
