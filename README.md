@@ -51,7 +51,7 @@ For this example we will with the next software configuration:
 ## Environment
 Next subsections describe how to enable each testing environment: local environment and Cloud environment.
 ### Local testing environment
-1. **[Node.js](https://nodejs.org/):** Install Node.js version 16.x. Check the installation using commands `node --version` and `npm --version`.
+1. **[Node.js](https://nodejs.org/):** Install Node.js version 18.x. Check the installation using commands `node --version` and `npm --version`.
 2. **[Appium](http://appium.io/):** Install Appium version 2.x with the command `npm install -g appium@">= 2.0.0 <3.0.0"`. Verify the installation with `appium --version`.
 3. **[Appium's UIAutomator Driver](https://github.com/appium/appium-uiautomator2-driver):** Install a compatible JDK ([Amazon Corretto](https://aws.amazon.com/corretto/) 21, is the recommended), configure *JAVA_HOME* environment variable, and install the driver with the command `appium driver install uiautomator2`.
 4. **[Android Emulator](https://developer.android.com/studio/run/emulator):** Install and configure using Android Studio. Check device reachability with adb devices. See more details at: https://developer.android.com/studio/install.
@@ -92,7 +92,7 @@ Next subsections describe how to enable each testing environment: local environm
 
 For the local testing environment, we need to set many things up. Next, we are describing each component:
 1. **[Node.js](https://nodejs.org/):**<br> To see how to install it depending on you OS see: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs.<br>
-Since the last version capable to run into AWS Device effortless is 16.x (last available release), then the recommendation is to use same version in the local environment.<br>
+The AWS Device Farm custom test environment used by this project runs on Node.js 18.x (see the spec file `aws-device-farm-config/awsdevicefarm_custom_spec_file.yml`), so the recommendation is to use Node.js 18.x in the local environment as well.<br>
 Once you finished the installation, you can check the installation was successful by executing the command:<br>
 <code>node --version</code><br>
 Additionally, when you install [Node.js](https://nodejs.org/) you also install [npm](https://docs.npmjs.com/about-npm) which we will use to install [Appium](http://appium.io/) in the next step.
@@ -101,8 +101,8 @@ To check it npm is installed running well, please execute the command:<br>
 <code>npm --version</code>
 
 2. **[Appium](http://appium.io/):<br> We will install Appium using npm.<br>
-For this example, we will use [Standard test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#test-environments-standard) since it give us more flexibility.<br>
-It supports node.js 16.x and Appium ver 1.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
+This project uses the [Custom test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#custom-test-environment), which lets us pin the runtime and Appium versions.<br>
+It uses Node.js 18.x and Appium ver 2.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
 Install local version by executing:<br>
 <code>npm install -g appium@">= 2.0.0 <3.0.0"</code><br>
 Once [Appium](http://appium.io/) is installed, you can check the installation was successful by executing the command:<br>
